@@ -1,6 +1,6 @@
 id: io.github.ladaapp.lada.extensions.intel
 runtime: io.github.ladaapp.lada
-runtime-version: 'stable'
+runtime-version: 'test' # todo: change to stable once main flatpak is updated
 sdk: org.gnome.Sdk//49
 build-extension: true
 separate-locales: false
