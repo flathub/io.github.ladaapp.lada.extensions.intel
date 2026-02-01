@@ -24,7 +24,6 @@ modules:
       - -DIGC_OPTION__SPIRV_TOOLS_MODE=Source
       - -DIGC_OPTION__VC_INTRINSICS_MODE=Source
       - -DIGC_OPTION__USE_PREINSTALLED_SPIRV_HEADERS=OFF
-      - -DLLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=$FLATPAK_BUILDER_BUILDDIR/SPIRV-Headers
       - -Wno-dev
     builddir: true
     subdir: igc
@@ -62,3 +61,6 @@ modules:
         path: 010-intel-graphics-compiler-disable-werror.patch
       - type: patch
         path: gcc15-llvm-header-fixes.patch
+      - type: shell
+        commands:
+          - ln -s ln -s "${FLATPAK_BUILDER_BUILDDIR}/SPIRV-Headers"  "${FLATPAK_BUILDER_BUILDDIR}/llvm-project/llvm/projects/SPIRV-Headers"
