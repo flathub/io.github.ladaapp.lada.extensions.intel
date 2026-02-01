@@ -9,7 +9,6 @@ modules:
   - name: igc # short name to avoid too long paths on file system
     buildsystem: simple
     build-commands:
-      - ls -lh $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/
       - |
         # rename to prevent SPIRV-LLVM-Translator from being included
         # twice by the build process, which causes the build to fail
@@ -17,10 +16,10 @@ modules:
 
         ln -s "SPIRV-LLVM-Translator-IGC-LLVM"  "llvm-project/llvm/projects/llvm-spirv"
         ln -s "opencl-clang" "llvm-project/llvm/projects/opencl-clang"
-      - patch -Np1 -d "intel-graphics-compiler-2.27.10" < 010-intel-graphics-compiler-disable-werror.patch
+      - patch -Np1 -d "igc" < 010-intel-graphics-compiler-disable-werror.patch
       - patch -Np1 -d "llvm-project" < llvm.patch
-      - ls -lh $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/
-      - ls -lh "/run/build/intel-graphics-compiler/llvm-project/llvm"
+      - ls -lh igc/external/llvm/releases/16.0.0/patches_external/
+      - df -h
       - |
         # Prevent IGC to load LLVM 17+ symbols
         export CFLAGS+=' -fno-semantic-interposition'
@@ -35,7 +34,7 @@ modules:
         export GIT_COMMITTER_NAME='builduser'
         export GIT_COMMITTER_EMAIL='builduser@archlinux.org'
         
-        cmake -B build -S "intel-graphics-compiler-2.27.10" \
+        cmake --verbose -B build -S "igc" \
             -G 'Unix Makefiles' \
             -DCCLANG_FROM_SYSTEM=OFF \
             -DCMAKE_BUILD_TYPE=Release \
@@ -74,7 +73,7 @@ modules:
       - type: git
         url: https://github.com/intel/intel-graphics-compiler
         tag: v2.27.10
-        dest: intel-graphics-compiler-2.27.10
+        dest: igc
       - type: git
         url: https://github.com/intel/vc-intrinsics.git
         tag: v0.24.2
