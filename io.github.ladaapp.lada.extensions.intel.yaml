@@ -16,13 +16,8 @@ modules:
 
         ln -s "SPIRV-LLVM-Translator-IGC-LLVM"  "llvm-project/llvm/projects/llvm-spirv"
         ln -s "opencl-clang" "llvm-project/llvm/projects/opencl-clang"
-
-        # llvm: fix build with gcc 15
-        # https://github.com/llvm/llvm-project/commit/7e44305041d96b064c197216b931ae3917a34ac1
-        export GIT_COMMITTER_NAME='builduser'
-        export GIT_COMMITTER_EMAIL='builduser@archlinux.org'
-        git -C llvm-project cherry-pick 7e44305041d96b064c197216b931ae3917a34ac1
       - patch -Np1 -d "$FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10" < $FLATPAK_BUILDER_BUILDDIR/010-intel-graphics-compiler-disable-werror.patch
+      - patch -Np1 -d "$FLATPAK_BUILDER_BUILDDIR/llvm-project" < $FLATPAK_BUILDER_BUILDDIR/llvm.patch
 #      - rm $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/InstCombine-Only-fold-bitcast-fptrunc-if-destination.patch # for some reason get a no such file or directory
       - |
         # Prevent IGC to load LLVM 17+ symbols
@@ -103,6 +98,8 @@ modules:
         url: https://gitlab.archlinux.org/archlinux/packaging/packages/intel-graphics-compiler/-/raw/b101628d15c65a811526697a37e6557ef3eb496d/010-intel-graphics-compiler-disable-werror.patch
         sha256: eac4352a78d537e8a6bbca55c059377dc704e3e1e5a267c99a0e9edda7a87380
         dest-filename: 010-intel-graphics-compiler-disable-werror.patch
+      - type: file
+        path: llvm.patch
   - python-dependencies.yaml
   - name: metainfo
     buildsystem: simple
