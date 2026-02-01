@@ -9,6 +9,7 @@ modules:
   - name: intel-graphics-compiler
     buildsystem: simple
     build-commands:
+      - ls -lh $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/
       - |
         # rename to prevent SPIRV-LLVM-Translator from being included
         # twice by the build process, which causes the build to fail
