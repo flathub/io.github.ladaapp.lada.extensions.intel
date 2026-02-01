@@ -4,7 +4,6 @@ runtime-version: 'beta'
 sdk: org.gnome.Sdk//49
 build-extension: true
 separate-locales: false
-modules:
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.llvm15
 build-options:
@@ -58,8 +57,6 @@ modules:
       - -DSKIP_UNIT_TESTS=1
       - -DSUPPORT_DG1=ON
     post-install:
-      - install -D $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml
-      - appstream-compose --basename=$FLATPAK_ID --prefix=$FLATPAK_DEST --origin=flatpak
         $FLATPAK_ID
       - ln -s /usr/lib/$(uname -m)-linux-gnu/GL/OpenCL/vendors/*.icd $FLATPAK_DEST/OpenCL/vendors
     sources:
@@ -68,8 +65,6 @@ modules:
         sha256: b032e55e16675d75540782dd7d044b7af0923afb34a9a3945656078f97e96491
       - type: patch
         path: find_igc.patch
-      - type: file
-        path: org.jellyfin.JellyfinServer.Plugin.IntelComputeRuntime.metainfo.xml
     modules:
       - name: intel-graphics-compiler
         buildsystem: cmake-ninja
