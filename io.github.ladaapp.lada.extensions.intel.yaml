@@ -57,7 +57,6 @@ modules:
       - -DSKIP_UNIT_TESTS=1
       - -DSUPPORT_DG1=ON
     post-install:
-        $FLATPAK_ID
       - ln -s /usr/lib/$(uname -m)-linux-gnu/GL/OpenCL/vendors/*.icd $FLATPAK_DEST/OpenCL/vendors
     sources:
       - type: archive
