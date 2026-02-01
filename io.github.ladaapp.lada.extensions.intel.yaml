@@ -6,16 +6,17 @@ build-extension: true
 separate-locales: false
 build-options:
   prefix: /app/extensions/intel
+  libdir: /app/extensions/intel/lib
   prepend-path: /app/extensions/intel/bin
   prepend-pkg-config-path: /app/extensions/intel/lib/pkgconfig
   prepend-ld-library-path: /app/extensions/intel/lib
+  ldflags: -L/app/extensions/intel/lib
 modules:
   - name: intel-compute-runtime
     buildsystem: cmake-ninja
-    build-options:
-      ldflags: -L/app/extensions/intel/lib
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
+      - -DNEO_SKIP_UNIT_TESTS=1
     sources:
       - type: archive
         url: https://github.com/intel/compute-runtime/archive/refs/tags/22.43.24595.30.tar.gz
@@ -78,21 +79,6 @@ modules:
             path: 010-intel-graphics-compiler-disable-werror.patch
           - type: patch
             path: gcc15-llvm-header-fixes.patch
-      - name: intel-igsc
-        buildsystem: cmake-ninja
-        builddir: true
-        modules:
-          - name: intel-metee
-            buildsystem: cmake-ninja
-            builddir: true
-            sources:
-              - type: archive
-                url: https://github.com/intel/metee/archive/refs/tags/6.2.1.tar.gz
-                sha256: 84d36a8cc290a3e4df5f4c3a06e777b66d000868975b4c88d8df752862f96b8c
-        sources:
-          - type: archive
-            url: https://github.com/intel/igsc/archive/refs/tags/V0.9.5.tar.gz
-            sha256: 516a099239ad0541598be87025556c878c0d11c6d43e09115d2bb2e24508b6ec
       - name: intel-gmmlib
         buildsystem: cmake-ninja
         builddir: true
@@ -100,3 +86,18 @@ modules:
           - type: archive
             url: https://github.com/intel/gmmlib/archive/refs/tags/intel-gmmlib-22.9.0.tar.gz
             sha256: 6ae262b95540681ad5478c63affb880135f772c95410b092009a6f7dfc04a5ba
+#      - name: intel-igsc
+#        buildsystem: cmake-ninja
+#        builddir: true
+#        modules:
+#          - name: intel-metee
+#            buildsystem: cmake-ninja
+#            builddir: true
+#            sources:
+#              - type: archive
+#                url: https://github.com/intel/metee/archive/refs/tags/6.2.1.tar.gz
+#                sha256: 84d36a8cc290a3e4df5f4c3a06e777b66d000868975b4c88d8df752862f96b8c
+#        sources:
+#          - type: archive
+#            url: https://github.com/intel/igsc/archive/refs/tags/V0.9.5.tar.gz
+#            sha256: 516a099239ad0541598be87025556c878c0d11c6d43e09115d2bb2e24508b6ec
