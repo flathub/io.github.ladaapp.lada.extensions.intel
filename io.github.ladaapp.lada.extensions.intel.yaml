@@ -19,8 +19,8 @@ modules:
       - -DNEO_SKIP_UNIT_TESTS=1
     sources:
       - type: archive
-        url: https://github.com/intel/compute-runtime/archive/refs/tags/22.43.24595.30.tar.gz
-        sha256: b032e55e16675d75540782dd7d044b7af0923afb34a9a3945656078f97e96491
+        url: https://github.com/intel/compute-runtime/archive/refs/tags/26.01.36711.4.tar.gz
+        sha256: f92c011244488e8a0832a3fc524e30571a2253dbdfd9b6b541438a85f2c2674c
     modules:
       - name: intel-graphics-compiler
         buildsystem: cmake-ninja
