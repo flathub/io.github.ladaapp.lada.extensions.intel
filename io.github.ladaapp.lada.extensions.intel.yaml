@@ -18,8 +18,10 @@ modules:
         ln -s "opencl-clang" "llvm-project/llvm/projects/opencl-clang"
       - patch -Np1 -d "$FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10" < $FLATPAK_BUILDER_BUILDDIR/010-intel-graphics-compiler-disable-werror.patch
       - patch -Np1 -d "$FLATPAK_BUILDER_BUILDDIR/llvm-project" < $FLATPAK_BUILDER_BUILDDIR/llvm.patch
-      - rm $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/InstCombine-Only-fold-bitcast-fptrunc-if-destination.patch # for some reason get a no such file or directory
+      - ls -lh $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/
+#      - rm $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/InstCombine-Only-fold-bitcast-fptrunc-if-destination.patch # for some reason get a no such file or directory
       - |
+        sync
         # Prevent IGC to load LLVM 17+ symbols
         export CFLAGS+=' -fno-semantic-interposition'
         export CXXFLAGS+=' -fno-semantic-interposition'
