@@ -21,7 +21,6 @@ modules:
       - ls -lh $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/
 #      - rm $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/InstCombine-Only-fold-bitcast-fptrunc-if-destination.patch # for some reason get a no such file or directory
       - |
-        sync
         # Prevent IGC to load LLVM 17+ symbols
         export CFLAGS+=' -fno-semantic-interposition'
         export CXXFLAGS+=' -fno-semantic-interposition'
@@ -67,9 +66,13 @@ modules:
         install -D -m644 opencl-clang/LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE-opencl-clang"
         ln -s "libopencl-clang.so.16" "${pkgdir}/usr/lib/libopencl-clang.so"
     sources:
-      - type: archive
-        url: https://github.com/intel/intel-graphics-compiler/archive/v2.27.10/intel-graphics-compiler-2.27.10.tar.gz
-        sha256: 3e6114f0c371ed88e1b0930b35ff8ac468c63f5448bf52e31341223e19cf572f
+#      - type: archive
+#        url: https://github.com/intel/intel-graphics-compiler/archive/v2.27.10/intel-graphics-compiler-2.27.10.tar.gz
+#        sha256: 3e6114f0c371ed88e1b0930b35ff8ac468c63f5448bf52e31341223e19cf572f
+#        dest: intel-graphics-compiler-2.27.10
+      - type: git
+        url: https://github.com/intel/intel-graphics-compiler
+        tag: v2.27.10
         dest: intel-graphics-compiler-2.27.10
       - type: git
         url: https://github.com/intel/vc-intrinsics.git
