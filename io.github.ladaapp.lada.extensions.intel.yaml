@@ -99,7 +99,9 @@ modules:
         sha256: eac4352a78d537e8a6bbca55c059377dc704e3e1e5a267c99a0e9edda7a87380
         dest-filename: 010-intel-graphics-compiler-disable-werror.patch
       - type: file
-        path: llvm.patch
+        url: https://github.com/llvm/llvm-project/commit/7e44305041d96b064c197216b931ae3917a34ac1.diff
+        sha256: e7c640dac3b63ce7bf47493c73fc87231143a01ad385e0fb0fb47984b5e98551
+        dest-filename: llvm.patch
   - python-dependencies.yaml
   - name: metainfo
     buildsystem: simple
