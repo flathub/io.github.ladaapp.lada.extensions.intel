@@ -34,7 +34,7 @@ modules:
         export GIT_COMMITTER_NAME='builduser'
         export GIT_COMMITTER_EMAIL='builduser@archlinux.org'
         
-        cmake --verbose -B build -S "igc" \
+        cmake -B build -S "igc" \
             -G 'Unix Makefiles' \
             -DCCLANG_FROM_SYSTEM=OFF \
             -DCMAKE_BUILD_TYPE=Release \
