@@ -63,4 +63,4 @@ modules:
         path: gcc15-llvm-header-fixes.patch
       - type: shell
         commands:
-          - ln -s ln -s "${FLATPAK_BUILDER_BUILDDIR}/SPIRV-Headers"  "${FLATPAK_BUILDER_BUILDDIR}/llvm-project/llvm/projects/SPIRV-Headers"
+          - ln -s "${FLATPAK_BUILDER_BUILDDIR}/SPIRV-Headers"  "${FLATPAK_BUILDER_BUILDDIR}/llvm-project/llvm/projects/SPIRV-Headers"
