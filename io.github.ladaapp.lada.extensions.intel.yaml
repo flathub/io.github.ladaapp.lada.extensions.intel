@@ -6,7 +6,7 @@ build-extension: true
 separate-locales: false
 modules:
   # source: https://gitlab.archlinux.org/archlinux/packaging/packages/intel-graphics-compiler/-/blob/main/PKGBUILD
-  - name: intel-graphics-compiler
+  - name: igc # short name to avoid too long paths on file system
     buildsystem: simple
     build-commands:
       - ls -lh $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/
@@ -21,7 +21,6 @@ modules:
       - patch -Np1 -d "llvm-project" < llvm.patch
       - ls -lh $FLATPAK_BUILDER_BUILDDIR/intel-graphics-compiler-2.27.10/external/llvm/releases/16.0.0/patches_external/
       - ls -lh "/run/build/intel-graphics-compiler/llvm-project/llvm"
-      - chmod -R 777 llvm-project/llvm
       - |
         # Prevent IGC to load LLVM 17+ symbols
         export CFLAGS+=' -fno-semantic-interposition'
