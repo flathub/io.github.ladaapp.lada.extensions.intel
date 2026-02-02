@@ -11,6 +11,9 @@ build-options:
   prepend-pkg-config-path: /app/extensions/intel/lib/pkgconfig
   prepend-ld-library-path: /app/extensions/intel/lib
   ldflags: -L/app/extensions/intel/lib
+cleanup:
+  - /include
+  - /lib/pkgconfig
 modules:
   - name: intel-compute-runtime
     buildsystem: cmake-ninja
@@ -109,3 +112,13 @@ modules:
       - type: archive
         url: https://github.com/oneapi-src/level-zero/archive/refs/tags/v1.26.2.tar.gz
         sha256: 8b53fdbd8455d414c0113059e351264ae8a5731503a865ef80cfd9172eb99a11
+  - python-dependencies.yaml
+  - name: metainfo
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo
+    sources:
+      - type: file
+        # todo: switch to tag once we have a new release
+        url: https://codeberg.org/ladaapp/lada/raw/commit/7cfaa2122b65f44a3a1e71dc09209c680874e153/packaging/flatpak/extension_intel/io.github.ladaapp.lada.extensions.intel.metainfo.xml
+        sha256: 541ee4e6978d6f5e3385f0a2289017237027164aa6ef9ff690351b65f17fb9a8
