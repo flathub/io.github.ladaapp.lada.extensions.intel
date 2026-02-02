@@ -97,12 +97,12 @@ modules:
           - type: archive
             url: https://github.com/oneapi-src/level-zero/archive/refs/tags/v1.26.2.tar.gz
             sha256: 8b53fdbd8455d414c0113059e351264ae8a5731503a865ef80cfd9172eb99a11
-       - name: opencl-headers
-         buildsystem: cmake-ninja
-         sources:
-           - type: archive
-             url: https://github.com/KhronosGroup/OpenCL-Headers/archive/v2025.07.22.tar.gz
-             sha256: 98f0a3ea26b4aec051e533cb1750db2998ab8e82eda97269ed6efe66ec94a240
+      - name: opencl-headers
+        buildsystem: cmake-ninja
+        sources:
+          - type: archive
+            url: https://github.com/KhronosGroup/OpenCL-Headers/archive/v2025.07.22.tar.gz
+            sha256: 98f0a3ea26b4aec051e533cb1750db2998ab8e82eda97269ed6efe66ec94a240
 #      - name: intel-igsc
 #        buildsystem: cmake-ninja
 #        builddir: true
