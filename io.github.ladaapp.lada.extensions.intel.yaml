@@ -11,9 +11,9 @@ build-options:
   prepend-pkg-config-path: /app/extensions/intel/lib/pkgconfig
   prepend-ld-library-path: /app/extensions/intel/lib
   ldflags: -L/app/extensions/intel/lib
-cleanup:
-  - /include
-  - /lib/pkgconfig
+#cleanup:
+#  - /include
+#  - /lib/pkgconfig
 modules:
   - name: intel-compute-runtime
     buildsystem: cmake-ninja
