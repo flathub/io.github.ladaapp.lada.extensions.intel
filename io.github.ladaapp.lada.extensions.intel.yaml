@@ -110,6 +110,5 @@ modules:
       - install -Dm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo
     sources:
       - type: file
-        # todo: switch to tag once we have a new release
-        url: https://codeberg.org/ladaapp/lada/raw/commit/7cfaa2122b65f44a3a1e71dc09209c680874e153/packaging/flatpak/extension_intel/io.github.ladaapp.lada.extensions.intel.metainfo.xml
+        url: https://codeberg.org/ladaapp/lada/raw/tag/v0.11.0/packaging/flatpak/extension_intel/io.github.ladaapp.lada.extensions.intel.metainfo.xml
         sha256: 541ee4e6978d6f5e3385f0a2289017237027164aa6ef9ff690351b65f17fb9a8
